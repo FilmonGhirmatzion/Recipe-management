@@ -1,0 +1,17 @@
+.blue-header {
+  background-color: rgb(73, 73, 233);
+  height: 50px; /* Adjust the height as needed */
+  width: 100%;
+}
+
+.blue-header {
+  background-color: blue;
+  height: 50px; /* Adjust the height as needed */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align content to the left */
+  color: white; /* Optional: to make the text color white */
+  font-size: 24px; /* Optional: adjust the font size as needed */
+  padding-left: 20px; /* Optional: add some padding to the left */
+}
