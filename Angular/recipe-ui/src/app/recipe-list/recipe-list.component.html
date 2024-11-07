@@ -1,1 +1,8 @@
-<p>recipe-list works!</p>
+<h2>Recipe</h2>
+
+<table>
+  <tr *ngFor="let recipe of recipes">
+    <td>{{recipe.name}}</td>
+    <td>{{recipe.description}}</td>
+  </tr>
+</table>

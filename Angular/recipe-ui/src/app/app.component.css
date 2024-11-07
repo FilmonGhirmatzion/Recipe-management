@@ -5,7 +5,7 @@
 }
 
 .blue-header {
-  background-color: blue;
+  background-color: rgb(61, 61, 193);
   height: 50px; /* Adjust the height as needed */
   width: 100%;
   display: flex;
