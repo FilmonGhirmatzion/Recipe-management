@@ -12,7 +12,7 @@ export class RecipeFormComponent implements OnInit {
   model = { id: null, name: null, description: null };
 
   constructor(
-    @Inject(Router) private router: Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
