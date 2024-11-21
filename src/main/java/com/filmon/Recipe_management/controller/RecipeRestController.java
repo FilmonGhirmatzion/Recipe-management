@@ -2,6 +2,7 @@ package com.filmon.Recipe_management.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,20 +28,23 @@ public class RecipeRestController {
         return recipeDAO.getAllRecipes();
     }
 
-    // @GetMapping("/{id}")
-    // public Recipe getRecipeById(@PathVariable int id) {
-    //     return recipeDAO.getRecipeById(id);
-    // }
+    @GetMapping("/get/{id}")
+    public Recipe get(@PathVariable Long id) {
+        return recipeDAO.getRecipeById(id);
+    }
 
-    // @PostMapping
-    // public Recipe addRecipe(@RequestBody Recipe recipe) {
-    //     return recipeDAO.addRecipe(recipe);
-    // }
+    @PostMapping("/create")
+    public void create(@RequestBody Recipe recipe) {
+        recipeDAO.create(recipe);
+    }
 
-    // @PutMapping("/{id}")
-    // public Recipe updateRecipe(@PathVariable int id, @RequestBody Recipe recipe) {
-    //     return recipeDAO.updateRecipe(id, recipe);
-    // }
-    
+    @PutMapping("/update/{id}")
+    public void updateRecipe(@PathVariable int id, @RequestBody Recipe recipe) {
+         recipeDAO.update(recipe);
+    }
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable Long id) {
+        recipeDAO.deleteRecipe(id);
+    }
  
 }

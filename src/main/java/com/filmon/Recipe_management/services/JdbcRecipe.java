@@ -44,29 +44,41 @@ public class JdbcRecipe implements RecipeDAO {
 
     @Override
     public Recipe getRecipeById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getRecipeById'");
+        Recipe recipe = null;
+        String sql = "SELECT id, name, description FROM recipe_management WHERE id = ?;";
+        SqlRowSet rows = jdbcTemplate.queryForRowSet(sql, id);
+        if (rows.next()) {
+            recipe = mapRowToRecipe(rows);
+        }
+        return recipe;
     }
 
 
     @Override
     public void create(Recipe recipe) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+        String sql = "INSERT INTO recipe_management (name, description) VALUES (?, ?)";
+        jdbcTemplate.update(sql, 
+            recipe.getName(),
+            recipe.getDescription()
+            );
     }
 
 
     @Override
     public void update(Recipe recipe) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        String sql = "UPDATE recipe_management SET name = ?, description = ? WHERE id = ?";
+        jdbcTemplate.update(sql, 
+            recipe.getName(),
+            recipe.getDescription(),
+            recipe.getId()
+            );
     }
 
 
     @Override
     public void deleteRecipe(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteRecipe'");
+        String sql = "DELETE FROM recipe_management WHERE id = ?";
+        jdbcTemplate.update(sql, id);
     }
 
 }
