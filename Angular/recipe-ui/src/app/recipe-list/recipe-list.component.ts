@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { RecipeService } from '../services/recipe.service';
+import { Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-list',
@@ -7,16 +9,14 @@ import { Component } from '@angular/core';
 })
 export class RecipeListComponent {
 
-  constructor(){}
+  constructor(private recipeService: RecipeService){}
 
-  recipes = [
-    { id: 1, name: 'Chocolate Chip Cookies', description: 'sugar, flaour, chocolate chips' },
-    { id: 2, name: 'Pasta Carbonara', description: 'pasta, eggs, bacon, parmesan cheese' },
-    { id: 3, name: 'Chicken Curry', description: 'chicken, curry powder, coconut milk' }
-
-  ];
+  recipes: any ;
   selectedRecipe?: any;
+
   ngOnInit(): void {
+    this.recipes = this.recipeService.getRecipesList().
+    subscribe({next: r => this.recipes = r, error: e => console.log(e)});
 
   }
   onSelect(recipe: any): void {
@@ -24,8 +24,12 @@ export class RecipeListComponent {
   }
 
   onDelete(recipe: any): void {
-    this.recipes = this.recipes.filter(obj => obj.id != recipe.id);
-    // TODO: Call backend delete and list refresh here and remove line above
+    this.recipeService.deleteRecipe(recipe.id).
+    subscribe({
+      next: (r: any) => this.ngOnInit(),
+      error: (e: any) => console.log(e)
+    });
+
   }
 
 }

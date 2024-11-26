@@ -12,20 +12,20 @@ export class RecipeService {
     return this.http.get<{}[]>('/recipes');
   }
 
-  getRecipeById(id: number): Observable<{}> {
+  getRecipeById(id: any) {
        return this.http.get<{}>(`/recipes/${id}`);
   }
 
-  createRecipe(recipe: {}): Observable<{}> {
-    return this.http.post<{}>('/recipes', recipe);
+  createRecipe(recipe: any) {
+    return this.http.post(`/api/v1/recipes`, recipe);
   }
 
-  updateRecipe(id: number, recipe: {}): Observable<{}> {
-    return this.http.put<{}>(`/recipes/${id}`, recipe);
+  updateRecipe(id: any, recipe: any) {
+    return this.http.put(`/api/v1/recipes/${id}`, recipe);
   }
 
-  deleteRecipe(id: number): Observable<{}> {
-    return this.http.delete<{}>(`/recipes/${id}`);
+  deleteRecipe(id: any) {
+    return this.http.delete(`/api/v1/recipes/${id}`);
   }
 
 }
